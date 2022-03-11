@@ -27,19 +27,17 @@ trait HasUserFingerPrint
         $user_id = auth()->id() ?? 0;
 
         static::creating(function (Model $model) use (&$user_id) {
-            if($model->userFingerPrint['create'])
+            if ($model->userFingerPrint['create'])
                 $model->{$model->userFingerPrintFields['create']} = $user_id;
         });
 
         static::updating(function (Model $model) use (&$user_id) {
-            if((!method_exists($model, 'trashed') || !$model->trashed()) && $model->userFingerPrint['update'])
+            if ((!method_exists($model, 'trashed') || !$model->trashed()) && $model->userFingerPrint['update'])
                 $model->{$model->userFingerPrintFields['update']} = $user_id;
         });
-//        static::saving(function (TrekBaseModel|TrekBaseAuthenticable $model) use (&$user_id) {
-//
-//        });
+
         static::deleted(function (Model $model) use (&$user_id) {
-            if($model->userFingerPrint['delete']) {
+            if ($model->userFingerPrint['delete']) {
                 $model->{$model->userFingerPrintFields['delete']} = $user_id;
                 $model->save();
             }
