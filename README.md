@@ -1,10 +1,10 @@
-# managemize/laravel-fingerprints
+# ![](https://managemize.com/favicon-32x32.png) managemize/laravel-fingerprints 
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/managemize/laravel-fingerprints.svg?style=flat-square)](https://packagist.org/packages/managemize/laravel-fingerprints)
 [![Total Downloads](https://img.shields.io/packagist/dt/managemize/laravel-fingerprints.svg?style=flat-square)](https://packagist.org/packages/managemize/laravel-fingerprints)
 ![GitHub Actions](https://github.com/managemize/laravel-fingerprints/actions/workflows/main.yml/badge.svg)
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
+This laravel package will allow your models to record the the created, updated and deleted by User FingerPrints
 
 ## Installation
 
@@ -15,9 +15,9 @@ composer require managemize/laravel-fingerprints
 ```
 
 ## Usage
-
+Add the trait to your models
 ```php
-// Usage description here
+use HasUserFingerPrint;
 ```
 
 ### Testing
@@ -46,7 +46,3 @@ If you discover any security related issues, please email managemize@gmail.com i
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
-
-## Laravel Package Boilerplate
-
-This package was generated using the [Laravel Package Boilerplate](https://laravelpackageboilerplate.com).
