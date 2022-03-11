@@ -8,6 +8,6 @@ class FingerPrintTest extends \Managemize\LaravelFingerprints\Tests\TestCase
     use RefreshDatabase;
 
     function test_finger_print() {
-        $this->assertStatus(200);
+        $this->assertEquals(1,1);
     }
 }
