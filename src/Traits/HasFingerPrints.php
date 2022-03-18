@@ -10,13 +10,13 @@ use Illuminate\Database\Eloquent\Model;
  */
 trait HasFingerPrints
 {
-    protected array $userFingerPrintFields = [
+    protected array $fingerPrintFields = [
         'create' => 'created_by',
         'update' => 'updated_by',
         'delete' => 'deleted_by',
     ];
 
-    protected array $userFingerPrint = [
+    protected array $fingerPrints = [
         'create' => true,
         'update' => true,
         'delete' => true,
@@ -25,18 +25,20 @@ trait HasFingerPrints
     public static function bootHasFingerPrints()
     {
         static::creating(function (Model $model) {
-            if ($model->userFingerPrint['create'] && auth()->id())
-                $model->{$model->userFingerPrintFields['create']} = auth()->id();
+            if (auth()->id() && $model->fingerPrints['create']) {
+                $model->{$model->fingerPrintFields['create']} = auth()->id();
+            }
         });
 
         static::updating(function (Model $model)  {
-            if ((!method_exists($model, 'trashed') || !$model->trashed()) && $model->userFingerPrint['update'] && auth()->id())
-                $model->{$model->userFingerPrintFields['update']} = auth()->id();
+            if ( auth()->id() && $model->fingerPrints['update'] && (!method_exists($model, 'trashed') || !$model->trashed())) {
+                $model->{$model->fingerPrintFields['update']} = auth()->id();
+            }
         });
 
         static::deleted(function (Model $model) {
-            if ($model->userFingerPrint['delete'] && auth()->id()) {
-                $model->{$model->userFingerPrintFields['delete']} = auth()->id();
+            if (auth()->id() && $model->fingerPrints['delete']) {
+                $model->{$model->fingerPrintFields['delete']} = auth()->id();
                 $model->save();
             }
         });
